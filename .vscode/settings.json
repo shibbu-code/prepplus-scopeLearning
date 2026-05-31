@@ -1,0 +1,5 @@
+{
+    "editor.inlineSuggest.edits.showCollapsed": true,
+    "postman.settings.dotenv-detection-notification-visibility": false,
+    "terminal.integrated.defaultLocation": "view"
+}

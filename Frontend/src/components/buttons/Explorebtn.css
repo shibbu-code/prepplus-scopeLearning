@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.explore
+{
+    height: 50px;
+    width: 164px;
+    cursor: pointer;
+    display: flex;
+   background-color: #061E29;
+ border-radius: 25px;
+ border : 3px solid #5F9598;
+   box-shadow: 0 0 15px rgba(95, 149, 152, 0.5);
+   
+}
+.exp-btn
+{
+ width: 100%;
+color: #FAF3F3;
+ background-color: transparent;
+ border: transparent;
+ cursor: pointer;
+ font-size: 16px;
+ font-weight: 600;
+ 
+}
+
+.arr
+{
+width: 25%;
+height: 100%;
+font-size: 16px;
+display: flex;
+align-items: center;
+color: #FAF3F3;
+}

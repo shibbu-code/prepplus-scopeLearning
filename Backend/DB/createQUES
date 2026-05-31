@@ -1,0 +1,35 @@
+const Question = require('./Modules/questions');
+
+const createQuestion = async (req, res) => {
+  try {
+    const {
+      title,
+      description,
+      difficulty,
+      constraints,
+      sampleInput,
+      sampleOutput
+    } = req.body;
+
+    const newQuestion = new Question({
+      title,
+      description,
+      difficulty,
+      constraints,
+      sampleInput,
+      sampleOutput
+    });
+
+    const savedQuestion = await newQuestion.save();
+
+    res.status(201).json({
+      message: "Question created successfully",
+      data: savedQuestion
+    });
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { createQuestion };
