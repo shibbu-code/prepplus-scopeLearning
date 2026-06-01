@@ -12,13 +12,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const SendEmail = async (email, otp) => {
-transporter.verify((error, success) => {
-  if (error) {
-    console.error("SMTP Error:", error);
-  } else {
-    console.log("SMTP Ready");
-  }
-});
+
 
 
   const info = await transporter.sendMail({
@@ -29,6 +23,12 @@ transporter.verify((error, success) => {
   });
  console.log("Message sent:", info.messageId);
 };
-
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("SMTP Error:", error);
+  } else {
+    console.log("SMTP Ready");
+  }
+});
 
 module.exports = SendEmail;

@@ -32,9 +32,9 @@ const SignUp = async (req, res) => {
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
-
+    console.log("Before SendEmail");
     await SendEmail(email, otp);
-
+console.log("After SendEmail");
     const newUser = await User.create({
       name,
       email,
@@ -47,7 +47,7 @@ const SignUp = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
+      secure: ture,
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
@@ -147,7 +147,7 @@ const VerifyOTP = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
