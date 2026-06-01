@@ -48,7 +48,7 @@ const SignUp = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: false,
-      sameSite: "lax",
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
@@ -92,7 +92,7 @@ const SignIn = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: false,
-      sameSite: "lax",
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
@@ -144,7 +144,7 @@ const VerifyOTP = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: false,
-      sameSite: "lax",
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
