@@ -29,7 +29,7 @@ const PracticePage = () => {
     try {
 
       const response = await fetch(
-        "http://localhost:3000/submitModule",
+        "https://prepplus-scopelearning-2.onrender.com/submitModule",
         {
           method: "POST",
           headers: {

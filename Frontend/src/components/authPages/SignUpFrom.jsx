@@ -16,7 +16,7 @@ const SignUpForm = () => {
     try {
 
       await axios.post(
-        'http://localhost:3000/signup',
+        'https://prepplus-scopelearning-2.onrender.com/signup',
         {
           email: e.target.email.value,
           name: e.target.name.value,
@@ -46,7 +46,7 @@ const SignUpForm = () => {
     try {
 
       const response = await axios.post(
-        'http://localhost:3000/verify-otp',
+        'https://prepplus-scopelearning-2.onrender.com/verify-otp',
         {
           email: e.target.email.value,
           otp: e.target.otp.value

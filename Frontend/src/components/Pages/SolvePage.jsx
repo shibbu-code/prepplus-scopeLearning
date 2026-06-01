@@ -95,7 +95,7 @@ const [showResults, setShowResults] =
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:3000/runCode",
+        "https://prepplus-scopelearning-2.onrender.com/runCode",
         {
           method: "POST",
 
@@ -152,7 +152,7 @@ const [showResults, setShowResults] =
     try {
 
       const response = await fetch(
-        "http://localhost:3000/submitCode",
+        "https://prepplus-scopelearning-2.onrender.com/submitCode",
         {
           method: "POST",
 

@@ -12,7 +12,7 @@ import { Routes, Route,BrowserRouter } from "react-router-dom";
 import Login from './components/authPages/LoginFrom'
 import SignUp from './components/authPages/SignUpFrom'
 const App = () => {
-  const baseurl = "http://localhost:3000";
+  const baseurl = "https://prepplus-scopelearning-2.onrender.com";
     return (
       <BrowserRouter>
     <Routes>

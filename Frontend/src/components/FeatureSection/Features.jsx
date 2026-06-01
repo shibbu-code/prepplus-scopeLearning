@@ -25,7 +25,7 @@ const Features = () => {
     try {
 
       const response = await fetch(
-        "http://localhost:3000/aptimodules",
+        "https://prepplus-scopelearning-2.onrender.com/aptimodules",
         {
           method: "GET",
           credentials: "include",
@@ -71,7 +71,7 @@ const Features = () => {
     try {
 
       const response = await fetch(
-        "http://localhost:3000/problemset",
+        "https://prepplus-scopelearning-2.onrender.com/problemset",
         {
           method: "GET",
           credentials: "include",

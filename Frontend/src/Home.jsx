@@ -9,7 +9,7 @@ const Home = () => {
   //logout function
 const handleLogout = async () => {
 
-  await fetch("http://localhost:3000/signout", {
+  await fetch("https://prepplus-scopelearning-2.onrender.com/signout", {
     method: "POST",
     credentials: "include",
   });
@@ -21,7 +21,7 @@ const handleLogout = async () => {
   // ✅ MOVE OUTSIDE
   const fetchDataDSA = async () => {
     try {
-      const response = await fetch("http://localhost:3000/problemset", {
+      const response = await fetch("https://prepplus-scopelearning-2.onrender.com/problemset", {
         method: "GET",
         credentials: "include"
       });
@@ -58,7 +58,7 @@ const handleLogout = async () => {
   const getModules = async () => {
   try {
 
-    const response = await fetch("http://localhost:3000/aptimodules", {
+    const response = await fetch("https://prepplus-scopelearning-2.onrender.com/aptimodules", {
       method: "GET",
       credentials: "include"
     });

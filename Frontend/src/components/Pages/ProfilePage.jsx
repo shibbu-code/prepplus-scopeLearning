@@ -34,7 +34,7 @@ const ProfilePage = () => {
   try {
 
     const response = await fetch(
-      "http://localhost:3000/signout",
+      "https://prepplus-scopelearning-2.onrender.com/signout",
       {
         method: "POST",
         credentials: "include"
@@ -68,7 +68,7 @@ const ProfilePage = () => {
     try {
 
       const response = await fetch(
-        "http://localhost:3000/profile",
+        "https://prepplus-scopelearning-2.onrender.com/profile",
         {
           method: "GET",
           headers: {

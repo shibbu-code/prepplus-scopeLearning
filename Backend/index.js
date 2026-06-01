@@ -21,6 +21,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: "https://prepplus-frontend.vercel.app",
+    
     credentials: true,
   })
 );
