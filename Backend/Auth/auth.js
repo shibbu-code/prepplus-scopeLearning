@@ -89,13 +89,17 @@ const SignIn = async (req, res) => {
 
     const token = generateToken(user);
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: false,
-      sameSite: "none",
-      maxAge: 7 * 24 * 60 * 60 * 1000
-    });
+    console.log("Generated token:", token);
 
+res.cookie("token", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+  path: "/"
+});
+
+console.log("Cookie attached");
     res.status(200).json({
       message: "User signed in successfully",
       token,
