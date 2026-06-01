@@ -8,10 +8,11 @@ const authMiddleware = async (req, res, next) => {
     if (!token) {
       return res.status(401).json({ message: "Not authenticated" });
     }
-
+ console.log("Token received:", token);
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     const user = await User.findById(decoded.id).select("-password -otp -otpExpiry");
+    console.log("User found in auth middleware:", user);
 
     if (!user) {
       return res.status(401).json({ message: "User not found" });
