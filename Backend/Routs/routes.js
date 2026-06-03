@@ -8,7 +8,7 @@ const home = (req, res) => {
 const problemSet = async (req,res) =>
 {
     try {
-        console.log(questionset.collection.name);
+        
         const problems = await questionset.find();
         res.status(200).json(
             {

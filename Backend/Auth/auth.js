@@ -32,9 +32,9 @@ const SignUp = async (req, res) => {
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
-    console.log("Before SendEmail");
+    
     await SendEmail(email, otp);
-console.log("After SendEmail");
+
     const newUser = await User.create({
       name,
       email,
@@ -76,7 +76,7 @@ const SignIn = async (req, res) => {
     const { email, password } = req.body;
     console.log("SignIn Request:", req.body);
     const user = await User.findOne({ email });
-    console.log("User found:", user);
+   
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -89,7 +89,7 @@ const SignIn = async (req, res) => {
 
     const token = generateToken(user);
 
-    console.log("Generated token:", token);
+    
 
 res.cookie("token", token, {
   httpOnly: true,
@@ -99,7 +99,7 @@ res.cookie("token", token, {
   path: "/"
 });
 
-console.log("Cookie attached");
+
     res.status(200).json({
       message: "User signed in successfully",
       token,

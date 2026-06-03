@@ -78,7 +78,7 @@ if(!res.empty()){
       const MainFunction = `
 int main() {
   ${declarations}
-  ${functionCall}
+  // ${functionCall}
   ${printLogic}
 }
 `;
@@ -89,7 +89,7 @@ int main() {
         userCode +
         "\n" +
         MainFunction;
-   console.log("Generated Code:\n", fullcode); // 🔥 DEBUG
+   
       // ✅ 5. Execute
       const response = await axios.post(
         "https://onecompiler-apis.p.rapidapi.com/api/v1/run", 
