@@ -78,7 +78,7 @@ if(!res.empty()){
       const MainFunction = `
 int main() {
   ${declarations}
-  ${functionCall}
+  // ${functionCall}
   ${printLogic}
 }
 `;
