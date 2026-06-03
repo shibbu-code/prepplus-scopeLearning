@@ -1,24 +1,28 @@
-const { Resend } = require("resend");
+const Brevo = require("@getbrevo/brevo");
+require("dotenv").config();
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const client = Brevo.ApiClient.instance;
+client.authentications["api-key"].apiKey = process.env.BREVO_API_KEY;
+
+const apiInstance = new Brevo.TransactionalEmailsApi();
 
 const SendEmail = async (email, otp) => {
   try {
-    const { data, error } = await resend.emails.send({
-      from: "Prepplus <onboarding@resend.dev>",
-      to: email,
+    await apiInstance.sendTransacEmail({
+      sender: { 
+        email: process.env.SENDER_EMAIL, 
+        name: "Prepplus" 
+      },
+      to: [{ email: email }],
       subject: "Email Verification",
-      html: `<h2>Your OTP is: ${otp}</h2>`,
+      htmlContent: `<h2>Your OTP is: ${otp}</h2>`,
     });
 
-    if (error) throw error;
+    console.log("Email sent successfully to:", email);
 
-    console.log("Email sent:", data);
-    return data;
-
-  } catch (err) {
-    console.error("SendEmail Error:", err);
-    throw err;
+  } catch (error) {
+    console.error("SendEmail Error:", error);
+    throw error;
   }
 };
 
