@@ -1,32 +1,42 @@
-const nodemailer = require("nodemailer");
+const https = require("https");
 require("dotenv").config();
 
-const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com",
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.BREVO_SMTP_USER,
-    pass: process.env.BREVO_SMTP_PASS,
-  },
-});
-
 const SendEmail = async (email, otp) => {
-  try {
-    const info = await transporter.sendMail({
-      from: `"Prepplus" <${process.env.SENDER_EMAIL}>`,
-      to: email,
-      subject: "Email Verification",
-      html: `<h2>Your OTP is: ${otp}</h2>`,
+  const data = JSON.stringify({
+    sender: { name: "Prepplus", email: process.env.SENDER_EMAIL },
+    to: [{ email: email }],
+    subject: "Email Verification",
+    htmlContent: `<h2>Your OTP is: ${otp}</h2>`,
+  });
+
+  const options = {
+    hostname: "api.brevo.com",
+    path: "/v3/smtp/email",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "api-key": process.env.BREVO_API_KEY,
+    },
+  };
+
+  return new Promise((resolve, reject) => {
+    const req = https.request(options, (res) => {
+      let body = "";
+      res.on("data", (chunk) => (body += chunk));
+      res.on("end", () => {
+        console.log("Email sent! Status:", res.statusCode);
+        resolve(body);
+      });
     });
 
-    console.log("Email sent:", info.messageId);
-    return info;
+    req.on("error", (error) => {
+      console.error("SendEmail Error:", error);
+      reject(error);
+    });
 
-  } catch (error) {
-    console.error("SendEmail Error:", error);
-    throw error;
-  }
+    req.write(data);
+    req.end();
+  });
 };
 
 module.exports = SendEmail;
