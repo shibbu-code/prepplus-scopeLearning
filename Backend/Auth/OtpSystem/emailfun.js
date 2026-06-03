@@ -15,6 +15,7 @@ const SendEmail = async (email, otp) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Content-Length": Buffer.byteLength(data),
       "api-key": process.env.BREVO_API_KEY,
     },
   };
@@ -24,8 +25,14 @@ const SendEmail = async (email, otp) => {
       let body = "";
       res.on("data", (chunk) => (body += chunk));
       res.on("end", () => {
-        console.log("Email sent! Status:", res.statusCode);
-        resolve(body);
+        console.log("Status:", res.statusCode);
+        console.log("Response:", body); // ← this will show exact error
+        if (res.statusCode === 201) {
+          console.log("Email sent successfully to:", email);
+          resolve(body);
+        } else {
+          reject(new Error(`Failed: ${body}`));
+        }
       });
     });
 
