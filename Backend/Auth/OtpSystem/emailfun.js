@@ -1,25 +1,27 @@
-// ✅ Correct
-const { ApiClient, TransactionalEmailsApi } = require("@getbrevo/brevo");
+const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-const client = ApiClient.instance;
-client.authentications["api-key"].apiKey = process.env.BREVO_API_KEY;
-
-const apiInstance = new TransactionalEmailsApi();
+const transporter = nodemailer.createTransport({
+  host: "smtp-relay.brevo.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.BREVO_SMTP_USER,
+    pass: process.env.BREVO_SMTP_PASS,
+  },
+});
 
 const SendEmail = async (email, otp) => {
   try {
-    await apiInstance.sendTransacEmail({
-      sender: {
-        email: process.env.SENDER_EMAIL,
-        name: "Prepplus",
-      },
-      to: [{ email: email }],
+    const info = await transporter.sendMail({
+      from: `"Prepplus" <${process.env.SENDER_EMAIL}>`,
+      to: email,
       subject: "Email Verification",
-      htmlContent: `<h2>Your OTP is: ${otp}</h2>`,
+      html: `<h2>Your OTP is: ${otp}</h2>`,
     });
 
-    console.log("Email sent successfully to:", email);
+    console.log("Email sent:", info.messageId);
+    return info;
 
   } catch (error) {
     console.error("SendEmail Error:", error);
